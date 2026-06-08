@@ -16,6 +16,8 @@ _Built and maintained by **Viprasol Tech**._
 
 </div>
 
+<p align="center"><img src="docs/assets/demo.svg" width="820" alt="semcache demo — semantic cache hits on paraphrases"></p>
+
 ---
 
 `semcache` is a **semantic cache for LLM (or any expensive `text -> text`) calls**. Instead of caching only on an exact string match, it **embeds the prompt** and returns a cached result when a *semantically similar* prompt (cosine similarity ≥ threshold) was seen before. Wrap any callable with a decorator, get instant cache hits on paraphrases, and watch your duplicate token spend drop.
@@ -41,7 +43,10 @@ No network. No API keys. No account. The default `HashingEmbedder` is determinis
 
 ## Sample output
 
-`semcache demo` seeds three support prompts, then fires five queries — paraphrases hit, the unrelated one misses:
+`semcache demo` seeds three support prompts, then fires five queries — paraphrases hit, the unrelated one misses (the hero image above is this exact run):
+
+<details>
+<summary>Show the raw terminal output</summary>
 
 ```text
 semcache demo  (threshold=0.6, seeded 3 prompts, offline HashingEmbedder)
@@ -71,6 +76,8 @@ Querying paraphrases against the seeded cache:
 │ Cost saved   │       $0.0042   │
 └──────────────┴─────────────────┘
 ```
+
+</details>
 
 Four of five lookups served from cache — an **80% hit rate** on prompts an exact-match cache would have missed entirely.
 
